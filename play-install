@@ -1,0 +1,54 @@
+#!/bin/sh
+DEFAULT_INSTALL_DIR=$HOME/opt
+
+die () {
+    echo "$1"
+    exit 1
+}
+
+## main ##
+VERSION=$1
+INSTALL_DIR=$DEFAULT_INSTALL_DIR
+[ -n "$VERSION" ] || die "VERSION is required."
+ARCHIVE_FILE=play-${VERSION}.zip
+UNZIPPED_DIR=play-${VERSION}
+
+DOWNLOAD_URL="http://downloads.typesafe.com/play/${VERSION}/${ARCHIVE_FILE}"
+
+if [ ! -d "$INSTALL_DIR" ]; then
+    mkdir $INSTALL_DIR
+fi
+
+(
+    cd $INSTALL_DIR
+
+    if [ ! -d "$UNZIPPED_DIR" ]; then
+
+        if [ ! -f "$ARCHIVE_FILE" ]; then
+            echo "Downloading archive file from $DOWNLOAD_URL"
+            wget "$DOWNLOAD_URL"
+        fi
+
+        if [ "$?" -ne 0 ]; then
+            die "Download failed."
+        fi
+
+        unzip $ARCHIVE_FILE
+    fi
+
+    if [ -f play ]; then
+        die "file named 'play' exists."
+    fi
+
+    if [ -L play ]; then
+        rm play
+    fi
+
+    ln -s $UNZIPPED_DIR $(pwd)/play
+
+    if ! echo $PATH | grep ${INSTALL_DIR}/play > /dev/null ; then
+        echo "Add this to your ~/.xxxshrc"
+        echo "export PATH=${INSTALL_DIR}/play:\$PATH"
+    fi
+
+)
