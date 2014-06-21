@@ -6,7 +6,7 @@ For play 2.3 or upper, please use typesafe-activator.
 
 ## Install
 ```
-curl https://raw.github.com/tototoshi/play-install/master/play-install > ~/bin/play-install && chmod 0755 !#:3
+curl https://raw.githubusercontent.com/tototoshi/play-install/master/play-install > ~/bin/play-install && chmod 0755 !#:3
 ```
 
 ## Usage
