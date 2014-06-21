@@ -13,6 +13,10 @@ INSTALL_DIR=$DEFAULT_INSTALL_DIR
 ARCHIVE_FILE=play-${VERSION}.zip
 UNZIPPED_DIR=play-${VERSION}
 
+if ! echo ${VERSION} | grep '^2\.[012]' > /dev/null; then
+    die "The version is not supported.\nThe former 'play' command has been replaced by a more general 'activator' command."
+fi
+
 DOWNLOAD_URL="http://downloads.typesafe.com/play/${VERSION}/${ARCHIVE_FILE}"
 
 if [ ! -d "$INSTALL_DIR" ]; then
