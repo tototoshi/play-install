@@ -1,6 +1,7 @@
 # play-install
 
 For play 2.0-2.2
+
 For play 2.3 or upper, please use typesafe-activator.
 
 ## Install
