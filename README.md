@@ -1,5 +1,8 @@
 # play-install
 
+For play 2.0-2.2
+For play 2.3 or upper, please use typesafe-activator.
+
 ## Install
 ```
 curl https://raw.github.com/tototoshi/play-install/master/play-install > ~/bin/play-install && chmod 0755 !#:3
